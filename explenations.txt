@@ -1,0 +1,8 @@
+The purpose of this program is to simulate two planes with their trajectory and to determine if the vectors are convergents or divergents.
+This is a test program wich have for objective to determine if the mathematical equations and the convergency vector supervision is helpfull for flight automatic labelisation.
+
+Mechanical referential is Spherical.
+We make the hypothesis than de Earth is perfectly spherical.
+
+DO_AB=r*arcos(cos(thetaA)*cos(thetaB)+sin(thetaA)*sin(thetaB)*cos(phiB-phiA))
+r=HearthRadius + Z  #Where Z is altitude
