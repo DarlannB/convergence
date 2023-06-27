@@ -25,37 +25,33 @@ class Avion():
         global r
         rho=(r+self.altitude*Conversion.FT2M)
         Vz:float
-        print("POSITION INITIALE SPHERIQUE -> Z:{}, LAT:{}, LONG:{}".format(self.altitude,self.latitude,self.longitude))
+        print("POSITION INITIALE SPHERIQUE -> Z:{}, LAT:{}, LONG:{}".format("%.2f"%self.altitude,"%.2f"%self.latitude,"%.2f"%self.longitude))
         #We make the hypothesis of a local flat Earth
-        Vx=self.horizontalSpeed*math.cos(self.heading) #Projection of speed on x axis
-        Vy=self.horizontalSpeed*math.sin(self.heading) #Projection of speed on y axis
+        Vx=(self.horizontalSpeed*Conversion.KT2MS)*math.cos(self.heading) #Projection of speed on x axis
+        Vy=(self.horizontalSpeed*Conversion.KT2MS)*math.sin(self.heading) #Projection of speed on y axis
         Vz=self.verticalSpeed*Conversion.FT2M #Projection of speed on z axis
 
-        Vx=Vx*Conversion.KT2MS
-        
-        Vy=Vy*Conversion.KT2MS
-
-
         #Projection of spherical position to a cartesian referential
-
         x=rho*(math.sin(90-self.latitude))*(math.cos(self.longitude))
         y=rho*math.sin(90-self.latitude)*math.sin(self.longitude)
         z=rho*math.cos(90-self.latitude)
-        print("POSITION INITIALE CARTESIEN -> X:{}; Y:{}; Z:{}".format(x,y,z))
-        #Position evolution for t=10s
-        while i<1:
-            x+=Vx*1
-            y+=Vy*1
-            z+=Vz*1
-            i+=1
-        print("DEPLACEMENT CARTESIEN -> X:{}; Y:{}; Z:{}".format(x,y,z))
+        ##print("POSITION INITIALE CARTESIEN -> X:{}; Y:{}; Z:{}".format(x,y,z))
+
+        #Position evolution by the time :t 
+        t=1
+        x+=Vx*t
+        y+=Vy*t
+        z+=Vz*t
+        ##print("DEPLACEMENT CARTESIEN -> X:{}; Y:{}; Z:{}".format(x,y,z))
+
         #New final position on spherical reference
         rho= math.sqrt(x**2+y**2+z**2)
         theta=math.acos(z/rho)
         self.latitude=90-theta
         self.longitude=math.atan2(y,x)
         self.altitude=(rho-r)*(1/Conversion.FT2M)
-        print("NOUVELLE POSITION SPHERIQUE -> Z:{}, LAT:{}, LONG:{}".format(self.altitude,self.latitude,self.longitude))
+        print("NOUVELLE POSITION SPHERIQUE -> Z:{}, LAT:{}, LONG:{}\n".format("%.2f"%self.altitude,"%.2f"%self.latitude,"%.2f"%self.longitude))
+        
         return self.altitude, self.latitude, self.longitude
 
 class Conversion():
@@ -77,16 +73,19 @@ def distanceOblique():
     thetaA = chasseur.longitude #longitude Avion 1
     thetaB = chasseur.longitude #longitude Avion 2
 
-    DO=r*math.acos(math.cos(thetaA)*math.cos(thetaB)+math.sin(thetaA)*math.sin(thetaB)*math.cos(phiB-phiA)) #Oblical distance formula from the ground projected points
-    print(DO)
+    DO=r*math.acos(math.cos(thetaA)*math.cos(thetaB)+math.sin(thetaA)*math.sin(thetaB)*math.cos(phiB-phiA)) #Oblical distance formula from the ground projected point
     return DO
     
 def comparaison():
 
     DOinit=distanceOblique()
+    print("Distance Oblique initiale : {}\n".format("%.2f"%DOinit))
     chasseur.deplacement()
+    #print(chasseur.latitude,chasseur.longitude, chasseur.altitude)
     bandit.deplacement()
+    #print(bandit.latitude,bandit.longitude, bandit.altitude)
     DOfin=distanceOblique()
+    print("Distance Oblique finale : {}\n".format("%.2f"%DOfin))
 
     if DOinit<DOfin:
         print("Divergence")
@@ -95,6 +94,6 @@ def comparaison():
     elif DOinit==DOfin:
         print("Ni convergence ni divergence")
 
-chasseur = Avion(0,100,0,45,0,5000)
-bandit = Avion(90,100,0,45,0,5000)
+chasseur = Avion(80,100,0,40,5,5000)
+bandit = Avion(260,100,0,45,175,5000)
 comparaison()
