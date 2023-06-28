@@ -44,13 +44,9 @@ pt1=chasseur
 pt2=bandit
 
 #############################################CREATION FENETRE GRAPHIQUE ####################################################################
-from tkinter import *
+import configgraph
 
-fenetre=Tk()
-fenetre.title("VISUALISATION CONVERGENCE VECTEUR")
-#Taille fenetre
-fenetre.geometry("1920x1080")
-fenetre.maxsize(1920,1080)
-fenetre.minsize(640,480)
-
-fenetre.mainloop()
+if __name__ == "__main__" :
+    app=configgraph.Application()
+    app.title("VISUALISATION CONVERGENCE VECTEUR")
+    app.mainloop()
