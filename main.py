@@ -44,9 +44,10 @@ pt1=chasseur
 pt2=bandit
 
 #############################################CREATION FENETRE GRAPHIQUE ####################################################################
-import configgraph
+import gui
 
 if __name__ == "__main__" :
-    app=configgraph.Application()
+    app=gui.Application()
     app.title("VISUALISATION CONVERGENCE VECTEUR")
     app.mainloop()
+    gui.Application.widget()
