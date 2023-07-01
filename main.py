@@ -1,6 +1,7 @@
 import math
 import avion
 from avion import Avion
+import gui
 
 r=6371*1000 #Earth radius [m]
 def distanceOblique():
@@ -44,10 +45,6 @@ pt1=chasseur
 pt2=bandit
 
 #############################################CREATION FENETRE GRAPHIQUE ####################################################################
-import gui
 
-if __name__ == "__main__" :
-    app=gui.Application()
-    app.title("VISUALISATION CONVERGENCE VECTEUR")
-    app.mainloop()
-    gui.Application.widget()
+if __name__ == "__main__":
+    gui.Run_graphic.gui_mainloop()
