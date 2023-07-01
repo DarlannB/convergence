@@ -112,11 +112,11 @@ class Run_graphic():
 
         ## DECLARATION DES VARIABLES DE TEXT STOCKAGE LABEL CHASSEUR
         llCS=tk.StringVar()
-        llCS.set(main.chasseur.longitude)
+        llCS.set(main.chasseur.latitude)
         lolCS=tk.StringVar()
-        lolCS.set(main.chasseur.altitude)
+        lolCS.set(main.chasseur.longitude)
         alCS=tk.StringVar()
-        alCS.set(main.chasseur.latitude)
+        alCS.set(main.chasseur.altitude)
 
         lat_labelC=tk.Label(root, text="LAT")
         long_labelC=tk.Label(root, text="LONG")
@@ -136,11 +136,11 @@ class Run_graphic():
         nomB.grid(row=4, column=2)
         ## DECLARATION DES VARIABLES DE TEXT STOCKAGE LABEL BANDIT
         llBS=tk.StringVar()
-        llBS.set(main.bandit.longitude)
+        llBS.set(main.bandit.latitude)
         lolBS=tk.StringVar()
-        lolBS.set(main.bandit.altitude)
+        lolBS.set(main.bandit.longitude)
         alBS=tk.StringVar()
-        alBS.set(main.bandit.latitude)
+        alBS.set(main.bandit.altitude)
 
         lat_labelB=tk.Label(root, text="LAT")
         long_labelB=tk.Label(root, text="LONG")
@@ -156,6 +156,14 @@ class Run_graphic():
         long_label_showB.grid(row=6, column=3)
         alt_label_showB.grid(row=7, column=3)
 
+        ### CONVERGENCE LABEL ###
+
+        convStateVar=tk.StringVar()
+        convStateVar.set(main.conv)
+
+        ConvStateVar_label=tk.Label(root, textvariable=convStateVar)
+        ConvStateVar_label.grid(row=4, column=5)
+
         def change_text():
             llCS.set(main.chasseur.latitude)
             lolCS.set(main.chasseur.longitude)
@@ -163,8 +171,11 @@ class Run_graphic():
             llBS.set(main.bandit.latitude)
             lolBS.set(main.bandit.longitude)
             alBS.set(main.bandit.altitude)
+            convStateVar.set(main.conv)
 
         button=tk.Button(root, text="RUN CALCULUS", command=lambda:[avion.Avion.deplacement,  main.comparaison(), change_text(), root.update_idletasks()])
         button.grid(row=10, column=2)
+
+        
 
         root.mainloop()
