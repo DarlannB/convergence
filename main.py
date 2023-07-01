@@ -46,7 +46,7 @@ def comparaison():
 ##DEBUT PROGRAMME##
 
 chasseur = Avion(90,100,0,45,0,5000)
-bandit = Avion(0,100,0,45,0.1, 3000)
+bandit = Avion(0,100,0,45,0.01, 3000)
 pt1=chasseur
 pt2=bandit
 
