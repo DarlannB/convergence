@@ -35,13 +35,16 @@ def comparaison():
     if DOinit<DOfin:
         conv="Divergence"
         print(conv)
+        return conv
     elif DOinit>DOfin:
         conv="Convergence"
         print(conv)
+        return conv
     elif DOinit==DOfin:
         conv="Ni convergence ni divergence"
         print(conv)
-    return conv
+        return conv
+
 
 ##DEBUT PROGRAMME##
 
