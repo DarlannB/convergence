@@ -2,7 +2,21 @@ The purpose of this program is to simulate two planes with their trajectory and 
 This is a test program wich have for objective to determine if the mathematical equations and the convergency vector supervision is helpfull for flight automatic labelisation.
 
 Mechanical referential is Spherical.
-We make the hypothesis than de Earth is perfectly spherical.
+We make the hypothesis that de Earth is perfectly spherical.
 
 DO_AB=r*arcos(cos(thetaA)*cos(thetaB)+sin(thetaA)*sin(thetaB)*cos(phiB-phiA))
 r=HearthRadius + Z  #Where Z is altitude
+
+Steps of development:
+
+I- Modelization of Aircraft as Objects.
+II- Establishment of mathematical relation calculation
+  i- Projection of displacement in the Referential
+  ii- Transformation of the displacement from Spherical to Cartesian and return to Spherical
+  iii- Oblical Distance calculatin
+  iv- Dynamic of vectors analysis
+III- GUI devlopment
+  i- Localization show
+  ii- Run calculation and vectorial analysis of aircrafts behaviours
+  iii- Development of possibility to change aircraft attribut while running
+  iv- Real Time Run
