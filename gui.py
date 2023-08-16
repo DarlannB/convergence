@@ -9,6 +9,8 @@ class Run_graphic():
         root.minsize=(200,200)
         root.maxsize=(1920,1080)
 
+################################################################### AIRCRAFT POSITION VALUE ####################################################################################
+
         nomC=tk.Label(root, text="CHASSEUR", font='bold')
         nomC.grid(row=0, column=2)
 
@@ -36,6 +38,7 @@ class Run_graphic():
 
         nomB=tk.Label(root, text="BANDIT", font='bold')
         nomB.grid(row=4, column=2)
+
         ## DECLARATION DES VARIABLES DE TEXT STOCKAGE LABEL BANDIT
         llBS=tk.StringVar()
         llBS.set(main.bandit.latitude)
@@ -83,12 +86,32 @@ class Run_graphic():
             elif main.conv == "Ni convergence ni divergence":
                 ConvStateVar_label.config(bg= "gray51", fg= "white")
 
-        
-        
-        
         button=tk.Button(root, text="RUN CALCULUS", command=lambda:[avion.Avion.deplacement,  main.comparaison(), change_text(), root.update_idletasks(), change_statusColor()])
         button.grid(row=10, column=2)
 
+################################################################### AIRCRAFT BEHAVIOUR VALUE ####################################################################################
+
+        ##CHASSEUR
+        nomCb=tk.Label(root, text="CHASSEUR", font='bold')
+        nomCb.grid(row=0, column=9)
+
+        heading_labelC=tk.Label(root, text="HDG")
+        horizontalSpeed_labelC=tk.Label(root, text="Vx")
+        verticalSpeed_labelC=tk.Label(root, text="Vz")
+        heading_labelC.grid(row=1, column=8)
+        horizontalSpeed_labelC.grid(row=2, column=8)
+        verticalSpeed_labelC.grid(row=3, column=8)
+
+        ##BANDIT
+        nomBb=tk.Label(root, text="BANDIT", font='bold')
+        nomBb.grid(row=4, column=9)
+
+        heading_labelB=tk.Label(root, text="HDG")
+        horizontalSpeed_labelB=tk.Label(root, text="Vx")
+        verticalSpeed_labelB=tk.Label(root, text="Vz")
+        heading_labelB.grid(row=5, column=8)
+        horizontalSpeed_labelB.grid(row=6, column=8)
+        verticalSpeed_labelB.grid(row=7, column=8)
         
 
         root.mainloop()
